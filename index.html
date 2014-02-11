@@ -32,7 +32,7 @@
         <h1>Static Code Analysis</h1>
       </section>
       <section>
-        <h2>What Do These Tools Do?</h2>
+        <h2>What Do These Tools Typically Do?</h2>
       </section>
       <section>
         <h2><a href="http://tobyho.com/2013/12/02/fun-with-esprima/" target="_blank">Analyze Code</a></h2>
@@ -43,7 +43,7 @@
         <h4>Transpilers, Minifiers, Visualizers</h4>
       </section>
       <section>
-        <h2>What Are Examples of These Tools?</h2>
+        <h2>Could You Provide Some Examples?</h2>
       </section>
       <section>
         <h2><a href="http://lisperator.net/uglifyjs/" target="_blank">UglifyJS</a></h2>
@@ -112,17 +112,19 @@
       </section>
       <section>
         <h2>That Is Converted To An Object</h2>
-        <pre class="long-javascript"><code class="language-javascript">"type": "FunctionDeclaration",
-"id": {
-  "type": "Identifier",
-  "name": "jqcon"
-},
-"params": [],
-"body": {
-  "type": "BlockStatement",
-  "body": []
-},
-"expression": false
+        <pre class="long-javascript"><code class="language-javascript">{
+  "type": "FunctionDeclaration",
+  "id": {
+    "type": "Identifier",
+    "name": "jqcon"
+  },
+  "params": [],
+  "body": {
+    "type": "BlockStatement",
+    "body": []
+  },
+  "expression": false
+}
 </code></pre>
         <h4>This Object Is Called an Abstract Syntax Tree (AST)</h4>
       </section>
@@ -138,7 +140,7 @@
             <h4>e.g. Does not store that a JS function starts/ends with open/close curly brackets</h4>
           </li>
           <li>
-            <h3>Can Be Traversed and Updated Like Any Other Object</h3>
+            <h3>Can Be Traversed and Updated</h3>
           </li>
         </ul>
       </section>
@@ -194,6 +196,26 @@ var code = 'function jqcon() {}',
         <h1>Awesome, It Works!</h1>
         <hr>
         <h3><strong>ASTs Are So Cool</strong></h3>
+        <ul>
+          <li></li>
+          <li>
+            <h3>But I Still Have A Few Questions About Esprima...</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Common Esprima Questions</h2>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Do I Have To Use Esprima?</h3>
+            <h4>No, there are alternatives out there. A popular alternative is <a href='http://marijnhaverbeke.nl/acorn/' target='_blank'>Acorn</a></h4>
+          </li>
+          <li>
+            <h3>Why Does Esprima AdHere to the Mozilla SpiderMonkey Parser API?</h3>
+            <h4>Because the SpiderMonkey Parse API is recognized by the community as a standard for structured JS representation (and many other tools adhere to it as well)</h4>
+          </li>
+        </ul>
       </section>
       <section>
         <h1>What Now?</h1>
