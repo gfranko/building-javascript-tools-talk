@@ -112,7 +112,6 @@
       </section>
       <section>
         <h2>That Is Converted To An Object</h2>
-        <h4>This Object Is Called an Abstract Syntax Tree (AST)</h4>
         <pre class="long-javascript"><code class="language-javascript">"type": "FunctionDeclaration",
 "id": {
   "type": "Identifier",
@@ -125,6 +124,7 @@
 },
 "expression": false
 </code></pre>
+        <h4>This Object Is Called an Abstract Syntax Tree (AST)</h4>
       </section>
       <section>
         <h2><a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank">Abstract Syntax Tree</a></h2>
@@ -168,55 +168,45 @@
         <ul>
           <li></li>
           <li>
-            <h3>A Minimal (~400 line) RequireJS Replacement After Optimized Builds</h3>
+            <h3>JavaScript Parser That Generates ASTs</h3>
           </li>
           <li>
-            <h3>Does Not Allow Loading Network Resources</h3>
+            <h3>Can Be Used In A Node.js Or Web Environment</h3>
           </li>
           <li>
-            <h3>Does Not Transform Source Code</h3>
+            <h3>Adheres To The <a href='https://developer.mozilla.org/en-US/docs/SpiderMonkey/Parser_API' target='_blank'>Mozilla SpiderMonkey Parser API</a></h3>
           </li>
-          <li><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate-Lite/blob/master/Gruntfile.js" target="_blank">Example Build With Almond.js</a></li>
-        </ul>
-      </section>
-      <section>
-        <h2>How Do I Tell RequireJS About My File Dependencies?</h2>
-        <hr>
-        <ul>
-          <li></li>
           <li>
-            <h3>By writing <code>init.js</code> in a format that Requirejs understands</h3>
+            <h3>Was Created by <a href='https://github.com/ariya' target='_blank'>Ariya Hidayat</a></h3>
           </li>
         </ul>
       </section>
       <section>
-        <h1>What Format?</h1>
-        <hr>
-        <ul>
-          <li></li>
-          <li>
-            <h2><a href="https://github.com/amdjs/amdjs-api/wiki/AMD" target="_blank">AMD</a></h2>
-            <h3>Asynchronous Module Definition</h3>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <h1>init.js AMD Example</h1>
-        <pre><code class="language-javascript">// init.js
-// Depends on jQuery, jQueryUI, Lodash, and Backbone
-define(['jquery', 'jqueryui', 'lodash', 'backbone'], function($, null, _, Backbone) {
-  /* This function gets called after
-    jquery.js, jqueryui.js, lodash.js,
-    and backbone.js are loaded
-  */
-});
-</code></pre>
+        <h2>Generating An AST With Esprima</h2>
+        <pre><code class="language-javascript">// Node.js Environment
+var code = 'function jqcon() {}',
+  esprima = require('esprima'),
+  ast = esprima.parse(code);
+  </code></pre>
+        <h3>That's All There Is To Creating An AST</h3><a target="_blank" href="http://requirebin.com/?gist=8939628" class="requirebin-link"><img src="http://requirebin.com/badge.png"></a>
       </section>
       <section>
         <h1>Awesome, It Works!</h1>
         <hr>
-        <h3><strong>RequireJS Is The Best</strong></h3>
-        <h3>Please Tell Me More About AMD</h3>
+        <h3><strong>ASTs Are So Cool</strong></h3>
+      </section>
+      <section>
+        <h1>What Now?</h1>
+        <hr>
+        <ul>
+          <li></li>
+          <li>
+            <h3>Now That We Have Our AST...</h3>
+          </li>
+          <li>
+            <h2>Let's Traverse It!</h2>
+          </li>
+        </ul>
       </section>
       <section>
         <h1>AMD</h1>
