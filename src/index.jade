@@ -188,7 +188,7 @@ html
           li
             h3 Adheres To The <a href='https://developer.mozilla.org/en-US/docs/SpiderMonkey/Parser_API' target='_blank'>Mozilla SpiderMonkey Parser API</a>
           li
-            h3 Was Created by <a href='https://github.com/ariya' target='_blank'>Ariya Hidayat</a>
+            h3 Created by <a href='https://github.com/ariya' target='_blank'>Ariya Hidayat</a>
 
       section
         h2 Generating An AST With Esprima
@@ -202,7 +202,7 @@ html
         h3 That's All There Is To Creating An AST
 
         a(class='requirebin-link', target='_blank', href='http://requirebin.com/?gist=8939628')
-          img(src='http://requirebin.com/badge.png')
+          img(src='images/requirebin_badge.png')
 
       section
         h1 Awesome, It Works!
@@ -232,21 +232,21 @@ html
           li
             h3 Now That We Have Generated Our AST...
           li
-            h2 Let's Traverse It!
+            h2 Let's Traverse and Update It!
 
       section
         h2
-          a(href='http://esprima.org/', target='_blank') Estraverse
+          a(href='https://github.com/Constellation/estraverse', target='_blank') Estraverse
         ul
           li
           li
-            h3 JavaScript Library That Provides AST Traversal Methods
+            h3 JavaScript Library That Provides AST Traversal and Update Methods
           li
             h3 Can Be Used In A Node.js Or Web Environment
           li
             h3 Adheres To The <a href='https://developer.mozilla.org/en-US/docs/SpiderMonkey/Parser_API' target='_blank'>Mozilla SpiderMonkey Parser API</a>
           li
-            h3 Was Created by <a href='https://github.com/Constellation' target='_blank'>Yusuke Suzuki</a>
+            h3 Created by <a href='https://github.com/Constellation' target='_blank'>Yusuke Suzuki</a>
 
       section
         h2 Traversing An AST With Estraverse
@@ -259,386 +259,84 @@ html
               estraverse = require('estraverse');
 
             estraverse.traverse(ast, {
-              enter: function (node, parent) {
-              }
+              enter: function (node, parent) {},
+              leave: function(node, parent) {}
             });
 
         a(class='requirebin-link', target='_blank', href='http://requirebin.com/?gist=8941318')
-          img(src='http://requirebin.com/badge.png')
+          img(src='images/requirebin_badge.png')
 
       section
-        h2 If
-          a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define
-          d Is Confusing You...
-        ul
-          li
-          li
-            h3 Let's See How It Would Look In Plain JavaScript
-          li
-            pre
-              code.language-javascript.
-                var example = function() {
-                  return 'No dependencies, returns a string';
-                }();
-
-      section
-        h2
-          a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define(id?, dependencies?, factory)
-        ul
-          li
-            h3 Let's Look At A Slightly More Complicated Example
-          li
-            pre
-              code.language-javascript.
-                // getUser.js
-                // Depends on a file (users.js), and returns a getUser function
-                define(['./users'], function(users) {
-                  return function getUser(username) {
-                    return users[username];
-                  };
-                });
-
-      section
-        h2 If
-          a(href='https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-', target='_blank') define
-          d Is Still Confusing...
-        ul
-          li
-          li
-            h3 Let's See How It Would Look In Plain JavaScript
-          li
-            pre
-              code.language-javascript.
-                var getUser = function(users) {
-                  return function getUser(username) {
-                    return users[username];
-                  };
-                }(usersCollection);
-
-      section
-        h1 Is That It?
-        hr
-        ul
-          li
-          li
-            h3 Nope, There Are Many Ways To Define an AMD Module
-          li
-            h3 Check Out More
-              a(href='http://requirejs.org/docs/api.html#define', target='_blank') Module Definitions
-
-      section
-        h2
-          a(href='https://github.com/amdjs/amdjs-api/wiki/require', target='_blank') require(Array, Function)
-        ul
-          li
-          li
-            h3 Loads One Or More AMD Modules
-          li
-            pre
-              code.language-javascript.
-                // Loads the example.js module from our first define() example
-                require(['./example.js'], function(exampleText) {
-                  // Prints: 'example.js return value: No dependencies, returns a string'
-                  console.log('example.js return value: ', exampleText);
-                })
-          li
-            h3 That's All There Is To The <code>require()</code> Method
-
-      section
-        h2 Should I Use <code>define</code> or <code>require</code>?
-        hr
-        ul
-          li
-          li
-            h2 <strong>You Should Use Both</strong>
-          li
-            h3 Use <code>define</code> to wrap logic that you would like to re-use somewhere else in your application
-          li
-            h3 Use <code>require</code> when you just want a dependency to be loaded onto the page.
-
-      section
-        h1 Now What?
-        hr
-        ul
-          li
-          li
-            h3 Now That You Understand How To Create And Load AMD Modules...
-          li
-            h3 Let Me Answer Your Question With A Question
-          li
-            h3 <strong>Have You Ever Used JavaScript Code That You Didn't Write?</strong>
-
-      section
-        h1 Third Party Libraries
-        hr
-        ul
-          li
-          li
-            h3 <strong>Cannot</strong> Assume AMD Is Being Used
-          li
-            h3 <strong>Can</strong> Still Provide Conditional Support
-
-      section
-        h2 How Would A Third Party Library Provide AMD Support?
-        hr
-        ul
-          li
-          li
-            h3 By Conditionally Wrapping Itself in a <code>define</code> method
-            pre
-              code.language-javascript.
-                // If an AMD compatible loader is on the page
-                if ( typeof define === "function" && define.amd ) {
-                    define([], function() {
-                        return exampleLib;
-                    });
-                }
-
-      section
-        h1 Third Party Examples
-
-      section
-        h1 jQuery
-        hr
-        h3 Provides AMD Support via a <strong>Named AMD module</strong>
-        ul
-          li
-            pre
-              code.language-javascript.
-                // jQuery Source
-                if ( typeof define === "function" && define.amd ) {
-                    define( "jquery", [], function() {
-                        return jQuery;
-                    });
-                }
-
-      section
-        h1 Lodash
-        hr
-        h3 Provides AMD Support via an <strong>Anonymous AMD module</strong>
-        ul
-          li
-            pre
-              code.language-javascript.
-                // Lodash Source
-                if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
-                  root._ = _;
-
-                  define(function() {
-                    return _;
-                  });
-                }
-
-      section
-        h1 Backbone
-        hr
-        h3 Does <strong>Not</strong> Provide AMD Support
-          a(href='https://github.com/jashkenas/backbone/commit/ab5d2eb4c657ed81e80ac815f687e94a2cb55fef', target='_blank') yet
-        ul
-          li
-            pre
-              code.language-javascript.
-                // Backbone Source
-                var Backbone;
-                if (typeof exports !== 'undefined') {
-                  Backbone = exports;
-                } else {
-                  Backbone = root.Backbone = {};
-                }
-
-      section
-        h2 How Do You Use Scripts That Are Not AMD Compatible?
-        hr
-        ul
-          li
-          li
-            h3 Use the RequireJS
-              a(href='http://requirejs.org/docs/api.html#config-shim', target='_blank') Shim Configuration
-
-      section
-        h2
-          a(href='http://requirejs.org/docs/api.html#config-shim', target='_blank') Shim Configuration
-        hr
-        h3 Useful for libraries that export a global variable
-        pre
+        h2 Traversing And Updating An AST With Estraverse
+        pre.long-javascript
           code.language-javascript.
-            requirejs.config({
-              shim: {
-                'backbone': {
-                    deps: ['underscore', 'jquery'],
-                    exports: 'Backbone'
+            estraverse.traverse(ast, {
+              enter: function (node, parent) {
+                if(node.type === 'Identifier' && node.name === 'jqcon') {
+                  // Changes the 'jqcon' function name to 'jqcon_is_awesome'
+                  node.name = node.name + '_is_awesome';  
                 }
-              }
+              },
             });
 
-      section
-        h2 Is This Black Magic?
-        hr
-        ul
-          li
-          li
-            h3 No, RequireJS just creates a <code>define</code> wrapper for all shimmed libraries
-          li
-            pre
-              code.language-javascript.
-                define("backbone", ["underscore","jquery"], (function (global) {
-                    return function () {
-                        var ret, fn;
-                        return ret || global.Backbone;
-                    };
-                }(this)));
+        a(class='requirebin-link', target='_blank', href='http://requirebin.com/?gist=8945438')
+          img(src='images/requirebin_badge.png')
 
       section
-        h2
-          a(href='http://requirejs.org/docs/api.html#config-shim', target='_blank') Shim Configuration
-        hr
-        h3 Also Useful for Declaring Dependencies
-        pre
+        h2 You Could Also Use the Estraverse.replace() Method...
+
+      section
+        h2 Traversing And Updating An AST With Estraverse
+        pre.long-javascript
           code.language-javascript.
-            require.config({
-              shim: {
-                'jquery.ui.widget': ['jquery'],
-
-                'jquery.selectBoxIt': ['jquery.ui.widget']
-              }
+            estraverse.replace(ast, {
+              enter: function (node, parent) {
+                if(node.type === 'Identifier' && node.name === 'jqcon') {
+                  // Changes the 'jqcon' function name to 'jqcon_is_awesome'
+                  return { 'type': 'Identifier', 'name': 'jqcon_is_awesome' } 
+                }
+              },
             });
 
+        a(class='requirebin-link', target='_blank', href='http://requirebin.com/?gist=8945281')
+          img(src='images/requirebin_badge.png')
+
       section
-        h1 Hold Up
+        h1 Awesome, It Works!
         hr
+        h3 <strong>Traversing and Updating ASTs Is Fun</strong>
         ul
           li
           li
-            h3 Can You Explain The <code>require.config()</code> Method?
+            h3 But I Still Have A Few Questions About Estraverse...
 
       section
-        h2 RequireJS
-          a(href='http://requirejs.org/docs/api.html#config', target='_blank') Config
-        hr
+        h2 Common Estraverse Questions
         ul
           li
           li
-            h3 RequireJS allows you to set application-level configuration options
+            h3 Do I Have To Use Estraverse?
+            h4 No, there are alternatives out there. A popular alternative is <a href='https://github.com/jrfeenst/esquery' target='_blank'>esquery</a>
           li
-            h3 The configuration options should be set <strong>before</strong> you define/require any modules
-
-      section
-        h2 Popular
-          a(href='http://requirejs.org/docs/api.html#config', target='_blank') Config Options
-        hr
-        ul
-          li
-          li
-            h3
-              a(href='http://requirejs.org/docs/api.html#config-baseUrl', target='_blank') baseurl
-            The The beginning file path that is used for all of the file lookups
-          li
-            h3
-              a(href='http://requirejs.org/docs/api.html#config-paths', target='_blank') paths
-            Allows Allows you to map module IDs to alias names (easier to type <code>'jquery'</code> than <code>'../../jquery</code>')
-
-          li
-            h3
-              a(href='http://requirejs.org/docs/api.html#config-shim', target='_blank') shim
-            Allows Allows you to make third-party libraries AMD compatible
+            h3 But Couldn't I Traverse And Update The AST Myself?
+            h4 You could, but traversing ASTs is tricky since not all AST nodes have the same property names. It is much easier to use a library that has already worked out the kinks.
 
       section
         h1 Let's Review
         ul
           li
           li
-            h3 <code>Define()</code> allows you to create AMD modules
+            h3 Use <a href='http://esprima.org/' target='_blank'>Esprima</a> To Generate An AST
           li
-            h3 <code>Require()</code> allows you to load one or more AMD modules onto the page
-          li
-            h3 RequireJS configuration options provide flexibility and convenience
+            h3 Use <a href='https://github.com/Constellation/estraverse' target='_blank'>Estraverse</a> To Traverse And Update An AST
           li
             h3 <strong>Last but not least...</strong>
-
-      section
-        h2 Building with
-          a(href='http://requirejs.org/docs/optimization.html', target='_blank') The RequireJS Optimizer
-
-      section
-        h1
-          a(href='http://requirejs.org/docs/optimization.html', target='_blank') The RequireJS Optimizer
-        hr
-        ul
-          li
-          li
-            h3 Node.js Command-Line Build Tool
-          li
-            h3 Concatenates Your AMD Project Into One File
-          li
-            h3 A Ton Of
-              a(href='https://github.com/jrburke/r.js/blob/master/build/example.build.js#L527', target='_blank') Options
-          li
-            h3 Can Be Used with Grunt or Gulp
-
-      section
-        h2 Example Build Profile
-        pre
-          code.language-javascript.
-            {
-              baseUrl: "public/js/",
-              paths: {
-                "desktop": "app/config/Init"
-              },
-              optimize: "uglify",
-              mainConfigFile: "public/js/app/config/Init.js",
-              include: ["desktop"],
-              out: "public/js/app/config/Init.min.js"
-            }
-
-      section
-        h2 Common Optimizer Questions
-        ul
-          li
-          li
-            h3 I thought RequireJS Didn't Require A Build Step?
-            h4 It doesn't, the optimizer is optional.
-          li
-            h3 Why Would I use the RequireJS Optimizer?
-            h4 If you want to build your project into one file
-          li
-            h3 Do I Still Need RequireJS After I Build?
-            h4 If you need to load any additional network resources with RequireJS, then yes.  Otherwise, you may use <a href='https://github.com/jrburke/almond/blob/master/almond.js' target='_blank'>Almond.js</a> or <a href='https://github.com/gfranko/amdclean' target='_blank'>AMDClean.js</a>.
-
-      section
-        h2
-          a(href='https://github.com/jrburke/almond', target='_blank') Almond.js
-        ul
-          li
-          li
-            h3 A Minimal (~400 line) RequireJS Replacement After Optimized Builds
-          li
-            h3 Does Not Allow Loading Network Resources
-          li
-            h3 Does Not Transform Source Code
-          li
-            a(href='https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate-Lite/blob/master/Gruntfile.js', target='_blank') Example Build With Almond.js
-
-      section
-        h2
-          a(href='http://gregfranko.com/amdclean/', target='_blank') AMDClean.js
-        ul
-          li
-          li
-            h3 An AMD Build Tool That Converts AMD Code To Standard JavaScript
-          li
-            h3 Allows You To Use AMD In Development Without Having To Include an AMD Library In Production
-          li
-            h3 Does Not Allow Loading Network Resources
-          li
-            h3 Transforms Source Code
-          li
-            a(href='https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate/blob/master/Gruntfile.js', target='_blank') Example Build With AMDClean.js
 
       section
         h2 For A Complete Example, Check Out:
         hr
         h2
-          a(href='https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate', target='_blank') Backbone-Require-Boilerplate
+          a(href='https://github.com/gfranko/amdclean/blob/master/src/amdclean.js', target='_blank') AMDClean Source
 
       section
         h2 Additional Topics That May Interest You
