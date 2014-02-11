@@ -45,11 +45,11 @@ html
       section
         h2
           a(href='http://tobyho.com/2013/12/02/fun-with-esprima/', target='_blank') Analyze
-        h4 Performance, Maintainability, Syntax
+        h4 Performance, Maintainability, Code Validation
       section
         h2
-          a(href='http://constellation.github.io/escodegen/demo/index.html', target='_blank') Generate Code
-        h4 Transpiling, Optimization, Compatibility
+          a(href='http://constellation.github.io/escodegen/demo/index.html', target='_blank') Generate
+        h4 Transpilers, Minification, Visualizations
 
       section
         h2 What Are Examples of These Tools?
@@ -86,6 +86,11 @@ html
 
       section
         h2
+          a(href='http://gregfranko.com/amdclean/', target='_blank') AMDClean
+        h4 Converts AMD code to standard JavaScript
+
+      section
+        h2
           a(href='http://browserify.org/' target='_blank') Browserify
         h4 Concatenates CommonJS Projects Into A Single File For The Browser
 
@@ -102,16 +107,10 @@ html
         ul
           li
           li
-            h3 I have a couple of theories...
+            h3 I have a theory...
 
       section
         h2 You Don't Know Where To Start
-
-      section
-        h2 It Sounds Boring
-
-      section
-        h2 It Sounds Difficult
 
       section
         h1 Let's Change That
@@ -121,54 +120,72 @@ html
         h3 Let's Learn
 
       section
-        h2 Most Projects Start Like This:
-        h3 JavaScript files are included as HTML script tags
+        h2 It Starts With A String Of Code
         hr
         pre
-          code.language-markup
-            &lt;body&gt;
-            &lt;script src='jquery.js'&gt;&lt;/script&gt;
-            &lt;script src='jquery-ui.js'&gt;&lt;/script&gt;
-            &lt;script src='lodash.js'&gt;&lt;/script&gt;
-            &lt;script src='backbone.js'&gt;&lt;/script&gt;
-            &lt;script src='init.js'&gt;&lt;/script&gt;
-            &lt;script src='app.js'&gt;&lt;/script&gt;
-            &lt;/body&gt;
+          code.language-javascript.
+            var code = 'function jqcon() {}';
 
       section
-        h1 This Is Fine...
+        h2 That Is Converted To An Object
+        h4 This Object Is Called an Abstract Syntax Tree (AST)
+        pre.long-javascript
+          code.language-javascript.
+            "type": "FunctionDeclaration",
+            "id": {
+              "type": "Identifier",
+              "name": "jqcon"
+            },
+            "params": [],
+            "body": {
+              "type": "BlockStatement",
+              "body": []
+            },
+            "expression": false
+
+      section
+        h2
+          a(href='http://en.wikipedia.org/wiki/Abstract_syntax_tree', target='_blank') Abstract Syntax Tree
         ul
           li
           li
-            h3 If you don't have many dependencies
+            h3 An Object (Tree) That Represents The Structure Of Your Code
           li
-            h3 If you don't care about page load performance
+            h3 Does Not Store Everything - It is <strong>abstract</strong>
+            h4 e.g. Does not store that a JS function starts/ends with open/close curly brackets
           li
-            h3 If you don't like decoupled code
+            h3 Can Be Traversed and Updated Like Any Other Object
 
       section
-        h1 This Is Better:
-        h3 Only Require.js is included as an HTML script tag
-        hr
-        pre
-          code.language-markup
-            &lt;body&gt;
-            &lt;script src='require.js' data-main='init'&gt;&lt;/script&gt;
-            &lt;/body&gt;
-
-        hr
-        h3 <code>data-main</code> - Tells Require.js to load <code>init.js</code> first
-
-      section
-        h1 Huh?
-        hr
-        h3 <code>init.js</code> is getting loaded, but none of my other JavaScript files are
-        h3 <strong>RequireJS is the worst</strong>
+        h2 Common AST Questions
+        ul
+          li
+          li
+            h3 When Would I Ever Use An AST?
+            h4 Whenever you want to analyze your code
+          li
+            h3 Couldn't I Just Use Regular Expressions?
+            h4 Pattern matching will only get you so far. It is also notoriously ugly to read.
+          li
+            h3 How Do I Generate An AST?
+            h4 By Using A Parser Library (or writing your parser)
 
       section
-        h1 Everything Will Be Okay!
-        hr
-        h3 You haven't told RequireJS that <code>init.js</code> depends on <i>jQuery</i>, <i>jQueryUI</i>, <i>Lodash</i>, and <i>Backbone</i>
+        h1 Let's Generate an AST!
+
+      section
+        h2
+          a(href='http://esprima.org/', target='_blank') Esprima
+        ul
+          li
+          li
+            h3 A Minimal (~400 line) RequireJS Replacement After Optimized Builds
+          li
+            h3 Does Not Allow Loading Network Resources
+          li
+            h3 Does Not Transform Source Code
+          li
+            a(href='https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate-Lite/blob/master/Gruntfile.js', target='_blank') Example Build With Almond.js
 
       section
         h2 How Do I Tell RequireJS About My File Dependencies?
