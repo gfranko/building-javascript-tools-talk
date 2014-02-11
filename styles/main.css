@@ -279,7 +279,10 @@ a {
   height: 200px;
 }
 .long-javascript {
-  font-size: 15px;
+  font-size: 14px !important;
   padding-top: 0.5em !important;
   padding-bottom: 0.5em !important;
+}
+.requirebin-link img {
+  width: 60px;
 }
