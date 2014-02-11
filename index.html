@@ -36,11 +36,11 @@
       </section>
       <section>
         <h2><a href="http://tobyho.com/2013/12/02/fun-with-esprima/" target="_blank">Analyze</a></h2>
-        <h4>Performance, Maintainability, Syntax</h4>
+        <h4>Performance, Maintainability, Code Validation</h4>
       </section>
       <section>
-        <h2><a href="http://constellation.github.io/escodegen/demo/index.html" target="_blank">Generate Code</a></h2>
-        <h4>Transpiling, Optimization, Compatibility</h4>
+        <h2><a href="http://constellation.github.io/escodegen/demo/index.html" target="_blank">Generate</a></h2>
+        <h4>Transpilers, Minification, Visualizations</h4>
       </section>
       <section>
         <h2>What Are Examples of These Tools?</h2>
@@ -70,6 +70,10 @@
         <h4>Concatenates AMD Projects Into A Single File</h4>
       </section>
       <section>
+        <h2><a href="http://gregfranko.com/amdclean/" target="_blank">AMDClean</a></h2>
+        <h4>Converts AMD code to standard JavaScript</h4>
+      </section>
+      <section>
         <h2><a href="http://browserify.org/" target="_blank">Browserify</a></h2>
         <h4>Concatenates CommonJS Projects Into A Single File For The Browser</h4>
       </section>
@@ -86,18 +90,12 @@
         <ul>
           <li></li>
           <li>
-            <h3>I have a couple of theories...</h3>
+            <h3>I have a theory...</h3>
           </li>
         </ul>
       </section>
       <section>
         <h2>You Don't Know Where To Start</h2>
-      </section>
-      <section>
-        <h2>It Sounds Boring</h2>
-      </section>
-      <section>
-        <h2>It Sounds Difficult</h2>
       </section>
       <section>
         <h1>Let's Change That</h1>
@@ -107,53 +105,79 @@
         <h3>Let's Learn</h3>
       </section>
       <section>
-        <h2>Most Projects Start Like This:</h2>
-        <h3>JavaScript files are included as HTML script tags</h3>
+        <h2>It Starts With A String Of Code</h2>
         <hr>
-        <pre><code class="language-markup">&lt;body&gt;
-&lt;script src='jquery.js'&gt;&lt;/script&gt;
-&lt;script src='jquery-ui.js'&gt;&lt;/script&gt;
-&lt;script src='lodash.js'&gt;&lt;/script&gt;
-&lt;script src='backbone.js'&gt;&lt;/script&gt;
-&lt;script src='init.js'&gt;&lt;/script&gt;
-&lt;script src='app.js'&gt;&lt;/script&gt;
-&lt;/body&gt;</code></pre>
+        <pre><code class="language-javascript">var code = 'function jqcon() {}';
+</code></pre>
       </section>
       <section>
-        <h1>This Is Fine...</h1>
+        <h2>That Is Converted To An Object</h2>
+        <h4>This Object Is Called an Abstract Syntax Tree (AST)</h4>
+        <pre class="long-javascript"><code class="language-javascript">"type": "FunctionDeclaration",
+"id": {
+  "type": "Identifier",
+  "name": "jqcon"
+},
+"params": [],
+"body": {
+  "type": "BlockStatement",
+  "body": []
+},
+"expression": false
+</code></pre>
+      </section>
+      <section>
+        <h2><a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank">Abstract Syntax Tree</a></h2>
         <ul>
           <li></li>
           <li>
-            <h3>If you don't have many dependencies</h3>
+            <h3>An Object (Tree) That Represents The Structure Of Your Code</h3>
           </li>
           <li>
-            <h3>If you don't care about page load performance</h3>
+            <h3>Does Not Store Everything - It is <strong>abstract</strong></h3>
+            <h4>e.g. Does not store that a JS function starts/ends with open/close curly brackets</h4>
           </li>
           <li>
-            <h3>If you don't like decoupled code</h3>
+            <h3>Can Be Traversed and Updated Like Any Other Object</h3>
           </li>
         </ul>
       </section>
       <section>
-        <h1>This Is Better:</h1>
-        <h3>Only Require.js is included as an HTML script tag</h3>
-        <hr>
-        <pre><code class="language-markup">&lt;body&gt;
-&lt;script src='require.js' data-main='init'&gt;&lt;/script&gt;
-&lt;/body&gt;</code></pre>
-        <hr>
-        <h3><code>data-main</code> - Tells Require.js to load <code>init.js</code> first</h3>
+        <h2>Common AST Questions</h2>
+        <ul>
+          <li></li>
+          <li>
+            <h3>When Would I Ever Use An AST?</h3>
+            <h4>Whenever you want to analyze your code</h4>
+          </li>
+          <li>
+            <h3>Couldn't I Just Use Regular Expressions?</h3>
+            <h4>Pattern matching will only get you so far. It is also notoriously ugly to read.</h4>
+          </li>
+          <li>
+            <h3>How Do I Generate An AST?</h3>
+            <h4>By Using A Parser Library (or writing your parser)</h4>
+          </li>
+        </ul>
       </section>
       <section>
-        <h1>Huh?</h1>
-        <hr>
-        <h3><code>init.js</code> is getting loaded, but none of my other JavaScript files are</h3>
-        <h3><strong>RequireJS is the worst</strong></h3>
+        <h1>Let's Generate an AST!</h1>
       </section>
       <section>
-        <h1>Everything Will Be Okay!</h1>
-        <hr>
-        <h3>You haven't told RequireJS that <code>init.js</code> depends on <i>jQuery</i>, <i>jQueryUI</i>, <i>Lodash</i>, and <i>Backbone</i></h3>
+        <h2><a href="http://esprima.org/" target="_blank">Esprima</a></h2>
+        <ul>
+          <li></li>
+          <li>
+            <h3>A Minimal (~400 line) RequireJS Replacement After Optimized Builds</h3>
+          </li>
+          <li>
+            <h3>Does Not Allow Loading Network Resources</h3>
+          </li>
+          <li>
+            <h3>Does Not Transform Source Code</h3>
+          </li>
+          <li><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate-Lite/blob/master/Gruntfile.js" target="_blank">Example Build With Almond.js</a></li>
+        </ul>
       </section>
       <section>
         <h2>How Do I Tell RequireJS About My File Dependencies?</h2>
