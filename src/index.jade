@@ -40,7 +40,7 @@ html
         h1 Static Code Analysis
 
       section
-        h2 What Do These Tools Do?
+        h2 What Do These Tools Typically Do?
 
       section
         h2
@@ -52,7 +52,7 @@ html
         h4 Transpilers, Minifiers, Visualizers
 
       section
-        h2 What Are Examples of These Tools?
+        h2 Could You Provide Some Examples?
 
       section
         h2
@@ -130,17 +130,19 @@ html
         h2 That Is Converted To An Object
         pre.long-javascript
           code.language-javascript.
-            "type": "FunctionDeclaration",
-            "id": {
-              "type": "Identifier",
-              "name": "jqcon"
-            },
-            "params": [],
-            "body": {
-              "type": "BlockStatement",
-              "body": []
-            },
-            "expression": false
+            {
+              "type": "FunctionDeclaration",
+              "id": {
+                "type": "Identifier",
+                "name": "jqcon"
+              },
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": []
+              },
+              "expression": false
+            }
 
         h4 This Object Is Called an Abstract Syntax Tree (AST)
 
@@ -155,7 +157,7 @@ html
             h3 Does Not Store Everything - It is <strong>abstract</strong>
             h4 e.g. Does not store that a JS function starts/ends with open/close curly brackets
           li
-            h3 Can Be Traversed and Updated Like Any Other Object
+            h3 Can Be Traversed and Updated
 
       section
         h2 Common AST Questions
@@ -206,6 +208,21 @@ html
         h1 Awesome, It Works!
         hr
         h3 <strong>ASTs Are So Cool</strong>
+        ul
+          li
+          li
+            h3 But I Still Have A Few Questions About Esprima...
+
+      section
+        h2 Common Esprima Questions
+        ul
+          li
+          li
+            h3 Do I Have To Use Esprima?
+            h4 No, there are alternatives out there. A popular alternative is <a href='http://marijnhaverbeke.nl/acorn/' target='_blank'>Acorn</a>
+          li
+            h3 Why Does Esprima AdHere to the Mozilla SpiderMonkey Parser API?
+            h4 Because the SpiderMonkey Parse API is recognized by the community as a standard for structured JS representation (and many other tools adhere to it as well)
 
       section
         h1 What Now?
