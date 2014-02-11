@@ -35,12 +35,12 @@
         <h2>What Do These Tools Do?</h2>
       </section>
       <section>
-        <h2><a href="http://tobyho.com/2013/12/02/fun-with-esprima/" target="_blank">Analyze</a></h2>
-        <h4>Performance, Maintainability, Code Validation</h4>
+        <h2><a href="http://tobyho.com/2013/12/02/fun-with-esprima/" target="_blank">Analyze Code</a></h2>
+        <h4>Performance, Maintainability, Validation</h4>
       </section>
       <section>
-        <h2><a href="http://constellation.github.io/escodegen/demo/index.html" target="_blank">Generate</a></h2>
-        <h4>Transpilers, Minification, Visualizations</h4>
+        <h2><a href="http://constellation.github.io/escodegen/demo/index.html" target="_blank">Generate Code</a></h2>
+        <h4>Transpilers, Minifiers, Visualizers</h4>
       </section>
       <section>
         <h2>What Are Examples of These Tools?</h2>
@@ -71,7 +71,7 @@
       </section>
       <section>
         <h2><a href="http://gregfranko.com/amdclean/" target="_blank">AMDClean</a></h2>
-        <h4>Converts AMD code to standard JavaScript</h4>
+        <h4>Converts AMD code To Standard JavaScript</h4>
       </section>
       <section>
         <h2><a href="http://browserify.org/" target="_blank">Browserify</a></h2>
@@ -156,7 +156,7 @@
           </li>
           <li>
             <h3>How Do I Generate An AST?</h3>
-            <h4>By Using A Parser Library (or writing your parser)</h4>
+            <h4>By Using A Parser Library (or writing your own parser)</h4>
           </li>
         </ul>
       </section>
@@ -201,7 +201,7 @@ var code = 'function jqcon() {}',
         <ul>
           <li></li>
           <li>
-            <h3>Now That We Have Our AST...</h3>
+            <h3>Now That We Have Generated Our AST...</h3>
           </li>
           <li>
             <h2>Let's Traverse It!</h2>
@@ -247,7 +247,7 @@ define(function() {
         </ul>
       </section>
       <section>
-        <h2>If <a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
+        <h2>If<a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
           <d>Is Confusing You...</d>
         </h2>
         <ul>
@@ -282,7 +282,7 @@ define(['./users'], function(users) {
         </ul>
       </section>
       <section>
-        <h2>If <a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
+        <h2>If<a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
           <d>Is Still Confusing...</d>
         </h2>
         <ul>
@@ -309,7 +309,7 @@ define(['./users'], function(users) {
             <h3>Nope, There Are Many Ways To Define an AMD Module</h3>
           </li>
           <li>
-            <h3>Check Out More <a href="http://requirejs.org/docs/api.html#define" target="_blank">Module Definitions</a></h3>
+            <h3>Check Out More<a href="http://requirejs.org/docs/api.html#define" target="_blank">Module Definitions</a></h3>
           </li>
         </ul>
       </section>
@@ -434,7 +434,7 @@ if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) 
       <section>
         <h1>Backbone</h1>
         <hr>
-        <h3>Does <strong>Not</strong> Provide AMD Support <a href="https://github.com/jashkenas/backbone/commit/ab5d2eb4c657ed81e80ac815f687e94a2cb55fef" target="_blank">yet</a></h3>
+        <h3>Does <strong>Not</strong> Provide AMD Support<a href="https://github.com/jashkenas/backbone/commit/ab5d2eb4c657ed81e80ac815f687e94a2cb55fef" target="_blank">yet</a></h3>
         <ul>
           <li>
             <pre><code class="language-javascript">// Backbone Source
@@ -454,7 +454,7 @@ if (typeof exports !== 'undefined') {
         <ul>
           <li></li>
           <li>
-            <h3>Use the RequireJS <a href="http://requirejs.org/docs/api.html#config-shim" target="_blank">Shim Configuration</a></h3>
+            <h3>Use the RequireJS<a href="http://requirejs.org/docs/api.html#config-shim" target="_blank">Shim Configuration</a></h3>
           </li>
         </ul>
       </section>
@@ -515,7 +515,7 @@ if (typeof exports !== 'undefined') {
         </ul>
       </section>
       <section>
-        <h2>RequireJS <a href="http://requirejs.org/docs/api.html#config" target="_blank">Config</a></h2>
+        <h2>RequireJS<a href="http://requirejs.org/docs/api.html#config" target="_blank">Config</a></h2>
         <hr>
         <ul>
           <li></li>
@@ -528,7 +528,7 @@ if (typeof exports !== 'undefined') {
         </ul>
       </section>
       <section>
-        <h2>Popular <a href="http://requirejs.org/docs/api.html#config" target="_blank">Config Options</a></h2>
+        <h2>Popular<a href="http://requirejs.org/docs/api.html#config" target="_blank">Config Options</a></h2>
         <hr>
         <ul>
           <li></li>
@@ -565,7 +565,7 @@ if (typeof exports !== 'undefined') {
         </ul>
       </section>
       <section>
-        <h2>Building with <a href="http://requirejs.org/docs/optimization.html" target="_blank">The RequireJS Optimizer</a></h2>
+        <h2>Building with<a href="http://requirejs.org/docs/optimization.html" target="_blank">The RequireJS Optimizer</a></h2>
       </section>
       <section>
         <h1><a href="http://requirejs.org/docs/optimization.html" target="_blank">The RequireJS Optimizer</a></h1>
@@ -579,7 +579,7 @@ if (typeof exports !== 'undefined') {
             <h3>Concatenates Your AMD Project Into One File</h3>
           </li>
           <li>
-            <h3>A Ton Of <a href="https://github.com/jrburke/r.js/blob/master/build/example.build.js#L527" target="_blank">Options</a></h3>
+            <h3>A Ton Of<a href="https://github.com/jrburke/r.js/blob/master/build/example.build.js#L527" target="_blank">Options</a></h3>
           </li>
           <li>
             <h3>Can Be Used with Grunt or Gulp</h3>
@@ -654,7 +654,7 @@ if (typeof exports !== 'undefined') {
         </ul>
       </section>
       <section>
-        <h2>For A Complete Example, Check Out: </h2>
+        <h2>For A Complete Example, Check Out:</h2>
         <hr>
         <h2><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate" target="_blank">Backbone-Require-Boilerplate</a></h2>
       </section>
