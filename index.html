@@ -209,42 +209,36 @@ var code = 'function jqcon() {}',
         </ul>
       </section>
       <section>
-        <h1>AMD</h1>
-        <hr>
+        <h2><a href="http://esprima.org/" target="_blank">Estraverse</a></h2>
         <ul>
           <li></li>
           <li>
-            <h3>Module Format Used By RequireJS</h3>
+            <h3>JavaScript Library That Provides AST Traversal Methods</h3>
           </li>
           <li>
-            <h3>Exposes Two Global Methods:</h3>
-            <h3><a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define()</a></h3>
-            <h3><a href="https://github.com/amdjs/amdjs-api/wiki/require" target="_blank">require()</a></h3>
+            <h3>Can Be Used In A Node.js Or Web Environment</h3>
+          </li>
+          <li>
+            <h3>Adheres To The <a href='https://developer.mozilla.org/en-US/docs/SpiderMonkey/Parser_API' target='_blank'>Mozilla SpiderMonkey Parser API</a></h3>
+          </li>
+          <li>
+            <h3>Was Created by <a href='https://github.com/Constellation' target='_blank'>Yusuke Suzuki</a></h3>
           </li>
         </ul>
       </section>
       <section>
-        <h2><a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define(id?, dependencies?, factory)</a></h2>
-        <ul>
-          <li></li>
-          <li>
-            <h3>Communicates a File's Dependencies and Return Value</h3>
-          </li>
-          <li>
-            <Can>Can return any type of value (e.g object, function, string) and defaults to <code>undefined</code> if no return value is specified.</Can>
-          </li>
-          <li>
-            <The>The <code>module id</code> and <code>dependencies</code> arguments are <strong>optional</strong></The>
-          </li>
-          <li>
-            <pre><code class="language-javascript">// example.js
-// Does not depend on any files and returns a string
-define(function() {
-  return 'No dependencies, returns a string';
+        <h2>Traversing An AST With Estraverse</h2>
+        <pre class="long-javascript"><code class="language-javascript">// Node.js Environment
+var code = 'function jqcon() {}',
+  esprima = require('esprima'),
+  ast = esprima.parse(code),
+  estraverse = require('estraverse');
+  
+estraverse.traverse(ast, {
+  enter: function (node, parent) {
+  }
 });
-</code></pre>
-          </li>
-        </ul>
+</code></pre><a target="_blank" href="http://requirebin.com/?gist=8939628" class="requirebin-link"><img src="http://requirebin.com/badge.png"></a>
       </section>
       <section>
         <h2>If<a href="https://github.com/amdjs/amdjs-api/wiki/AMD#define-function-" target="_blank">define</a>
