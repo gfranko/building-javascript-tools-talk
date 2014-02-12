@@ -48,7 +48,7 @@ html
         h4 Performance, Maintainability, Validation
       section
         h2
-          a(href='http://constellation.github.io/escodegen/demo/index.html', target='_blank') Generate Code
+          a(href='http://constellation.github.io/escodegen/demo/index.html', target='_blank') Generate Code For
         h4 Transpilers, Minifiers, Visualizers
 
       section
@@ -293,9 +293,9 @@ html
               enter: function (node, parent) {
                 if(node.type === 'Identifier' && node.name === 'jqcon') {
                   // Changes the 'jqcon' function name to 'jqcon_is_awesome'
-                  return { 'type': 'Identifier', 'name': 'jqcon_is_awesome' } 
+                  return { 'type': 'Identifier', 'name': 'jqcon_is_awesome' };
                 }
-              },
+              }
             });
 
         a(class='requirebin-link', target='_blank', href='http://requirebin.com/?gist=8945281')
@@ -319,31 +319,97 @@ html
             h4 No, there are alternatives out there. A popular alternative is <a href='https://github.com/jrfeenst/esquery' target='_blank'>esquery</a>
           li
             h3 But Couldn't I Traverse And Update The AST Myself?
-            h4 You could, but traversing ASTs is tricky since not all AST nodes have the same property names. It is much easier to use a library that has already worked out the kinks.
+            h4 You could, but traversing ASTs is tricky since not all AST child nodes have a unified interface.
+              h5 e.g. <code>VariableDeclaration</code> has nested children nodes within a <a href='https://developer.mozilla.org/en-US/docs/SpiderMonkey/Parser_API#Declarations' target='_blank'>declarations</a> property, while an <code>IfStatement</code> has nested children within a <a href='https://developer.mozilla.org/en-US/docs/SpiderMonkey/Parser_API#Statements' target='_blank'>consequent</a> property.
 
       section
         h1 Let's Review
         ul
           li
           li
-            h3 Use <a href='http://esprima.org/' target='_blank'>Esprima</a> To Generate An AST
+            h3 Use <a href='http://esprima.org/' target='_blank'>Esprima</a> To Generate An AST From Code
           li
-            h3 Use <a href='https://github.com/Constellation/estraverse' target='_blank'>Estraverse</a> To Traverse And Update An AST
-          li
-            h3 <strong>Last but not least...</strong>
+            h3 Use <a href='https://github.com/Constellation/estraverse' target='_blank'>Estraverse</a> To Traverse And Update That AST
 
       section
-        h2 For A Complete Example, Check Out:
+        h1 What Now?
         hr
+        ul
+          li
+          li
+            h3 Now That We Have Generated, Traversed, and Updated Our AST...
+          li
+            h2 Let's Generate Code!
+
+      section
         h2
-          a(href='https://github.com/gfranko/amdclean/blob/master/src/amdclean.js', target='_blank') AMDClean Source
+          a(href='https://github.com/Constellation/escodegen', target='_blank') Escodegen
+        ul
+          li
+          li
+            h3 JavaScript Library That Generates Code From An AST
+          li
+            h3 Can Be Used In A Node.js Or Web Environment
+          li
+            h3 Adheres To The <a href='https://developer.mozilla.org/en-US/docs/SpiderMonkey/Parser_API' target='_blank'>Mozilla SpiderMonkey Parser API</a>
+          li
+            h3 Created by <a href='https://github.com/Constellation' target='_blank'>Yusuke Suzuki</a>
 
       section
-        h2 Additional Topics That May Interest You
+        h2 Generating Code From An AST With Escodegen
+        pre.long-javascript
+          code.language-javascript.
+            // Node.js Environment
+            var code = 'function jqcon() {}',
+              esprima = require('esprima'),
+              ast = esprima.parse(code),
+              escodegen = require('escodegen'),
+              // Returns a string of code represented by the AST
+              regenerated_code = escodegen.parse(ast);
+
+        a(class='jsbin-link', target='_blank', href='http://jsbin.com/vupar/2/edit') View On JSBin
+
+      section
+        h1 Amazing!
         hr
-        h3 Browserify vs RequireJS
-        h3 Using CommonJS syntax with RequireJS
-        h3 ES6 Modules and The Future
+        h3 <strong>Generating Code From An AST Is Hot</strong>
+        ul
+          li
+          li
+            h3 But I Still Have A Few Questions About Escodegen...
+
+      section
+        h2 Common Escodegen Questions
+        ul
+          li
+          li
+            h3 Do I Have To Use Escodegen?
+            h4 Good question. I'm not sure of a good alternative.  Anyone in the audience know?
+          li
+            h3 But Couldn't I Write an AST Code Generator Myself?
+            h4 You could. I'll see you next year, when you're finished.
+
+      section
+        h1 Let's Review
+        ul
+          li
+          li
+            h3 Use <a href='http://esprima.org/' target='_blank'>Esprima</a> To Generate An AST From Code
+          li
+            h3 Use <a href='https://github.com/Constellation/estraverse' target='_blank'>Estraverse</a> To Traverse And Update That AST
+          li
+            h3 Use <a href='https://github.com/Constellation/escodegen' target='_blank'>Escodegen</a> To Generate Code From That Ast
+
+      section
+        h2 Wrap Up Questions
+        ul
+          li
+          li
+            h3 Your Examples Are Kind Of Simple. Got Anything More Complex?
+            h4 Yep, check out the AMDClean <a href='http://gregfranko.com/amdclean/' target='_blank'>website</a> and <a href='https://github.com/gfranko/amdclean/blob/master/src/amdclean.js' target='_blank'>source</a>
+          li
+            h3 You Didn't Cover CSS Static Analysis.  What Gives?
+            h4 Not enough time my friend. But I created an <a href='http://requirebin.com/?gist=8910801' target='_blank'>example</a> that you can look at later.
 
       section
         h1 Thanks!
